@@ -26,18 +26,8 @@ export function createMustraceConnection():  Promise<Connection> {
 
 createMustraceConnection().then((connection) => {
     try {
-        // const orgRepository = connection.getRepository(Organisation);
-        // const orgs = await orgRepository.find();
-
         const eventRepository = connection.getRepository(Event);
         const sql = eventRepository.createQueryBuilder('event').innerJoinAndSelect('event.races', 'race').getSql();
-        // const events = await eventRepository.find({
-        //     races: {
-        //     "metadata": "photo.metadata"
-        // }});
-
-        // const raceRepository = connection.getRepository(Race);
-
         console.log(sql);
     } catch (err) {
         console.log("err: ", err)
